@@ -2,6 +2,9 @@ import React from "react";
 import PostComment from "./PostComment"
 import AddCommentForm from "./AddCommentForm";
 
+/** Display list of comments and 
+ * 
+ */
 function CommentsList() {
 
   const FAKE_POSTS = 

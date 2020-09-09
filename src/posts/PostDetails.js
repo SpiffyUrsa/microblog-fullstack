@@ -3,12 +3,13 @@ import PostForm from "../common/PostForm";
 import {useHistory, useParams } from "react-router-dom"
 import CommentsList from "./CommentsList";
 
+/** Displays a blog post.
+ */
 function PostDetails() {
 
   const { id } = useParams();
 
-  // TODO: access store and find the post by id. Populate
-  // information afterwards
+  // TODO: access store: grab post by id (includes comments)
 
 // [{
 //   title:
@@ -33,6 +34,7 @@ function PostDetails() {
     history.push("/");
   }
 
+  //Show PostForm for edit OR post+CommentsList
   const postDisplay = showEdit ?
     <PostForm handlePost={handlePost} /> :
     <>

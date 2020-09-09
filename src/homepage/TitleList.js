@@ -1,6 +1,9 @@
 import React from 'react'
 import TitleCard from './TitleCard'
 
+//gets store here
+
+
 function TitleList({ posts }) {
   const titleCards = posts.map(post => (
     <TitleCard

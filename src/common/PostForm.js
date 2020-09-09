@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 
-
 function PostForm({ handlePost }){
   
   const history = useHistory();
