@@ -1,0 +1,24 @@
+App
+  - Navbar
+  - Routes
+    - PostForm
+    - PostDetails
+      - PostForm
+    - Homepage
+      - TitleList
+        - TitleCard
+
+Outline
+- PostDetails
+  - edit post button (same form, doesn't need new URL)
+  - delete post button (redirect to Homepage after)
+  x routed to /[postId]
+
+- NewPostForm
+  - title, description, and body
+  - route to /new
+  - Saving+Canceling both redirect to Homepage
+- Homepage
+  - title and description of each post
+  - title links to PostDetails
+  - route to '/', not '/homepage'
