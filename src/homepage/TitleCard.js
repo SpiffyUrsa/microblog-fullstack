@@ -5,7 +5,7 @@ function TitleCard({ title, id, description }) {
   return (
     <div className="TitleCard">
       <div>
-        <Link to={`/${id}`}> {title}</Link>
+        <Link to={`/${id}`}>{title}</Link>
       </div>
       <p>
         <em>
