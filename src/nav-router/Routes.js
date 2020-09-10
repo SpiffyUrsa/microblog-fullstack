@@ -9,9 +9,9 @@ import PostDetails from '../posts/PostDetails.js'
  * App -> Routes
  */
 
-function Routes(){
+function Routes() {
 
-  return(
+  return (
     <div className="Routes">
       <Switch>
         <Route exact path="/">

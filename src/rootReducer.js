@@ -1,5 +1,6 @@
 import { ADD_POST, DELETE_POST, EDIT_POST } from './actions.js'
 
+// Dummy data
 const INITIAL_STATE =
 {
   posts: {
@@ -11,8 +12,9 @@ const INITIAL_STATE =
     }
   }
 }
-//assuming action.payload gives us an id straight
+
 function rootReducer(state = INITIAL_STATE, action) {
+  // Modifies store based on given action type
   switch (action.type) {
     case ADD_POST: {
       const postCopy = { ...state.posts }

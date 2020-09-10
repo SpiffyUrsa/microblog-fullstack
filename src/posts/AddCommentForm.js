@@ -10,15 +10,10 @@ import React, { useState } from "react";
  */
 
 function AddCommentForm({ addComment }) {
-
-  //TODO:
-  // const initialData = { comment: "" };
-
   // State
   const [formData, setFormData] = useState({ comment: "" });
-  // const [formData, setFormData] = useState(initialData);
-  
-  /** Sync form & data */
+
+  /** Sync form & data with extra overkill */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(formData => ({
@@ -32,7 +27,6 @@ function AddCommentForm({ addComment }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     addComment(formData);
-    //setFormData(initialData);
     evt.target.reset()
   }
 

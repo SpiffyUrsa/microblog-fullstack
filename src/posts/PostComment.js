@@ -1,11 +1,12 @@
 import React from "react";
 
-
-function PostComment({ text }) {
+/** Displays a post comment & a delete button.
+ */
+function PostComment({ deleteComment, text }) {
   return (
     <div className="PostComment">
-      <button>X</button>
-      <p>{text}</p>
+      <button>Delete</button>
+      <p onClick={deleteComment}>{text}</p>
     </div>
   )
 }

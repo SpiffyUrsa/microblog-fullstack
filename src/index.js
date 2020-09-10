@@ -8,6 +8,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./rootReducer";
 
+// Creates store w/ redux devtools setup
 const store = createStore(
   rootReducer,
   compose(
@@ -19,7 +20,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-     <App />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

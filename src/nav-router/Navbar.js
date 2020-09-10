@@ -6,9 +6,9 @@ import { NavLink } from "react-router-dom";
  * App -> Navbar
  */
 
-function Navbar(){
+function Navbar() {
 
-  return(
+  return (
     <nav className="Navbar navbar bg-info rounded">
       <h1 className="navbar-brand">Microblog</h1>
       <h2 className="nav-item">Get in the Rithm of blogging!</h2>

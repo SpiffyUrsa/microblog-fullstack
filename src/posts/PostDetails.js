@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PostForm from "../common/PostForm";
-import {useHistory, useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import CommentsList from "./CommentsList";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 
@@ -29,20 +29,22 @@ function PostDetails() {
   const post = useSelector(state => state.posts[id], shallowEqual);
 
   // Destructure post from store
-  const { title, description, body, comments} = post;
-  
+  const { title, description, body, comments } = post;
 
+  // Shows the edit post form
   function handleEdit(evt) {
     setShowEdit(true);
   }
 
+  // Dispatches to update post in API and Store
   function handleEditPost(postData) {
-    // DISPATCH TO EDIT_POST_IN_API
+    //FIXME:
     history.push(`/${id}`);
   }
 
+  // Dispatches to delete post in API and Store
   function handleDelete(evt) {
-    // DISPATCH TO DELETE_POST_FROM_API
+    //FIXME:
     history.push("/");
   }
 

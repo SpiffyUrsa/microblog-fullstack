@@ -9,14 +9,11 @@ App
 
     - PostDetails
       - PostForm (edit)
-      - PostDisplay (WIP)
       - CommentsList
         - PostComment 
         - AddCommentForm
 
 Outline
-- refactor PostDetails
-- add PostDisplay
 
 
 
@@ -44,13 +41,13 @@ Questions
   - what parts are wrapped up together that may need to be used elsewhere by itself
 Overall: be mindful of where the logic goes; don't overload with switchiness''
 
-Followup Questions
-- where should actions.js live, other redux stuff too?
-- should we have used lodash to copy nested obj in rootReducer, and if so what is it called?
-
 Notes for self
 - why don't use destructure obj more often?
   - popular for react
 - review mutating more
   ! - copy the entire thing up front so you don't
 - add cmd+click to vsc shortcuts 
+
+Code Review Q's
+- where should actions.js live, other redux stuff too?
+- should we have used lodash to copy nested obj in rootReducer, and if so what is it called?

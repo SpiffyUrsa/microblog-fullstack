@@ -13,26 +13,12 @@ import { Link, useHistory } from "react-router-dom";
  * App -> Routes -> {NewPost, PostDetails} -> PostForm
  */
 function PostForm({ handlePost, post }) {
-
-  //TODO:
   // Populate form if editting a post
   const initialData = {
     title: post ? post.title : '',
     description: post ? post.description : '',
     body: post ? post.body : ''
   }
-
-  // let initialData = {
-  //   title: "",
-  //   description: "",
-  //   body: ""
-  // }
-  // 
-  // // Populate form if editting a post
-  // if (post) {
-  //   const { title, description, body } = post;
-  //   initialData = { title, description, body };
-  // }
 
   // Setup history
   const history = useHistory();

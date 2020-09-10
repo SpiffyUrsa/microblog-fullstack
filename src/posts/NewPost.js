@@ -7,11 +7,11 @@ import { addPostsToAPI } from "../actionCreators.js";
  * 
  * App -> Routes -> NewPost
  */
-
 function NewPost() {
+  // Setup dispatch hook
   const dispatch = useDispatch();
-  
-  /** ????? */
+
+  /** thunk stuff */
   function handleAddPost(postData) {
     dispatch(addPostsToAPI(postData));
   }

@@ -8,7 +8,6 @@ import TitleList from './TitleList'
  */
 
 function Homepage() {
-
   return (
     <div className="Homepage">
       <TitleList />
