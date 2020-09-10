@@ -5,8 +5,11 @@ import { useDispatch } from "react-redux";
 
 /** CommentsList: Display list of comments and a form to add comments.
  * 
+ * Props:
+ *  comments: An array of comments like ["comment", ...]
+ *  id: a string containing the id of the post the comments belong to.
  * 
- * 
+ * App -> Routes -> PostDetails -> CommentsList 
  */
 function CommentsList({ comments, id}) {
 
