@@ -11,7 +11,8 @@ import React, { useState } from "react";
 
 function AddCommentForm({ addComment }) {
   // State
-  const [formData, setFormData] = useState({ comment: "" });
+  const initialData = { text: "" }
+  const [formData, setFormData] = useState(initialData);
 
   /** Sync form & data with extra overkill */
   function handleChange(evt) {
@@ -27,15 +28,15 @@ function AddCommentForm({ addComment }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     addComment(formData);
-    evt.target.reset()
+    setFormData(initialData);
   }
 
   return (
     <form className="AddCommentForm" onSubmit={handleSubmit}>
       <div className="form-group">
         <input
-          name="comment"
-          value={formData.comment}
+          name="text"
+          value={formData.text}
           placeholder="New Comment"
           className="form-control"
           onChange={handleChange}

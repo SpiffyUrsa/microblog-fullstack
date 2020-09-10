@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import Homepage from '../homepage/Homepage.js'
 import NewPost from '../posts/NewPost.js';
 import PostDetails from '../posts/PostDetails.js'
+import NotFound from "../NotFound";
 
 /** Routes: Contains the routes for the app.
  * 
@@ -17,16 +18,16 @@ function Routes() {
         <Route exact path="/">
           <Homepage />
         </Route>
-
         <Route exact path="/new">
           <NewPost />
         </Route>
-
+        <Route exact path="/notfound">
+          <NotFound />
+        </Route>
         <Route exact path="/:id">
           <PostDetails />
         </Route>
-
-        <Redirect to="/" />
+        <NotFound />
       </Switch>
     </div>
   )

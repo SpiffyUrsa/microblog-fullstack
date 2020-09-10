@@ -17,7 +17,7 @@ function TitleCard({ title, id, description }) {
         <em>
           {description}
         </em>
-      </p>Ï
+      </p>
     </div>
   )
 }

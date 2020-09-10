@@ -3,6 +3,9 @@ import PostForm from "../common/PostForm";
 import { useHistory, useParams } from "react-router-dom"
 import CommentsList from "./CommentsList";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { deletePostFromAPI, editPostInAPI } from "../actionCreators";
+import { Redirect } from "react-router-dom";
+
 
 /** PostDetails: Displays a blog post.
  * 
@@ -26,10 +29,15 @@ function PostDetails() {
   const dispatch = useDispatch();
 
   // Store
-  const post = useSelector(state => state.posts[id], shallowEqual);
+  const posts = useSelector(state => state.posts, shallowEqual);
+  
+  if (Object.values(posts).length === 0) return "Loading...";
+  if (posts[id] === undefined) {
+    return <Redirect to="/notfound" />;
+  }
 
   // Destructure post from store
-  const { title, description, body, comments } = post;
+  const { title, description, body, comments } = posts[id];
 
   // Shows the edit post form
   function handleEdit(evt) {
@@ -38,19 +46,19 @@ function PostDetails() {
 
   // Dispatches to update post in API and Store
   function handleEditPost(postData) {
-    //FIXME:
+    dispatch(editPostInAPI(postData, id));
     history.push(`/${id}`);
   }
 
   // Dispatches to delete post in API and Store
   function handleDelete(evt) {
-    //FIXME:
+    dispatch(deletePostFromAPI(id));
     history.push("/");
   }
 
   //Show PostForm for edit OR post+CommentsList
   const postDisplay = showEdit ?
-    <PostForm handlePost={handleEditPost} post={post} /> :
+    <PostForm handlePost={handleEditPost} post={posts[id]} /> :
     <>
       <h2>{title}</h2>
       <h4><em>{description}</em></h4>

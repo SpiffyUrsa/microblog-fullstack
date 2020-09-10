@@ -2,6 +2,7 @@ import React from "react";
 import PostComment from "./PostComment"
 import AddCommentForm from "./AddCommentForm";
 import { useDispatch } from "react-redux";
+import { addCommentInAPI } from "../actionCreators";
 
 /** CommentsList: Display list of comments and a form to add comments.
  * 
@@ -11,7 +12,7 @@ import { useDispatch } from "react-redux";
  * 
  * App -> Routes -> PostDetails -> CommentsList 
  */
-function CommentsList({ comments, id }) {
+function CommentsList({ comments, postId }) {
   const dispatch = useDispatch();
 
   // Deletes the comment
@@ -20,13 +21,17 @@ function CommentsList({ comments, id }) {
   }
 
   //TODO: USE DISPATCH TO CHANGE COMMENTS IN API AND IN STORE.
-  function addComment({ comment }) {
-    console.log('magic')
+  function addComment(commentData) {
+    dispatch(addCommentInAPI(commentData, postId));
   }
 
 
   // Make <PostComments> from [] of comments
-  const commentsDisplay = comments.map((comment, idx) => <PostComment deleteComment={deleteComment} text={comment} key={idx} />); //TODO: use stable key later
+  const commentsDisplay = comments.map((comment, idx) => 
+    <PostComment 
+      deleteComment={deleteComment} 
+      text={comment.text} key={comment.id} 
+    />);
 
   return (
     <div className="CommentsList">
