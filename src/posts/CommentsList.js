@@ -19,8 +19,6 @@ function CommentsList({ comments, id }) {
     //TODO: use dispatch to delete comment in API and store
   }
 
- // TODO: Question: we're dispatching to change API and the store separately; should we be just changing the API then calling another fn to update store?
-
   //TODO: USE DISPATCH TO CHANGE COMMENTS IN API AND IN STORE.
   function addComment({ comment }) {
     console.log('magic')

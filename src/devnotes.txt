@@ -47,7 +47,18 @@ Notes for self
 - review mutating more
   ! - copy the entire thing up front so you don't
 - add cmd+click to vsc shortcuts 
+- design consideration: this could be a more useful component if the component can just take a list of posts to display
+- idea of a component's 'real name' based on actual feature vs given name
+- return { ...state, posts: postCopy }; // saves 10+h potentially; without ...state, this works for you until it doesn't (coded defensively)
+
+- library: deepfreeze
+
+// if actionCreators.js gets too big:
+// actions/
+// inside that folder, a post called post.js, auth.js
+// comment: if redux stuff is left at the top, often left at top level w/o folder
+
 
 Code Review Q's
-- where should actions.js live, other redux stuff too?
-- should we have used lodash to copy nested obj in rootReducer, and if so what is it called?
+1. where should actions.js live, other redux stuff too?
+

@@ -13,12 +13,18 @@ import { Link, useHistory } from "react-router-dom";
  * App -> Routes -> {NewPost, PostDetails} -> PostForm
  */
 function PostForm({ handlePost, post }) {
+
+  //TODO:
   // Populate form if editting a post
   const initialData = {
     title: post ? post.title : '',
     description: post ? post.description : '',
     body: post ? post.body : ''
   }
+// FIXME: post?.title || ''
+// think of ?. as a safe property check;
+// read as: safely check for title and use that, otherwise empty string
+// blogs?.post?.comments?.first (really shines when chained)
 
   // Setup history
   const history = useHistory();

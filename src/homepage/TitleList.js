@@ -13,7 +13,11 @@ import { useSelector, shallowEqual } from "react-redux";
  * App -> Homepage -> TitleList -> TitleCard
  */
 
-function TitleList() {
+ // design consideration: this could be a more useful component if the component can just take a list of posts to display
+// component's real name is AllPostTitleList()
+//'where do ersponsibilities lie"
+
+ function TitleList() {
   // Store - get all posts
   const posts = useSelector(store => store.posts, shallowEqual);
 
