@@ -7,7 +7,6 @@ import { ADD_POST, EDIT_POST, DELETE_POST } from "./actions.js";
 //   }
 // }
 
-
 export function addPostsToAPI(postData) {
   return async function(dispatch) {
     await axios.post('/', postData);

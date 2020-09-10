@@ -11,9 +11,14 @@ import React, { useState } from "react";
 
 function AddCommentForm({ addComment }) {
 
-  const initialData = { comment: "" };
-  const [formData, setFormData] = useState(initialData);
+  //TODO:
+  // const initialData = { comment: "" };
 
+  // State
+  const [formData, setFormData] = useState({ comment: "" });
+  // const [formData, setFormData] = useState(initialData);
+  
+  /** Sync form & data */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(formData => ({
@@ -23,10 +28,12 @@ function AddCommentForm({ addComment }) {
 
   }
 
+  /** Adds a comment to API+state */
   function handleSubmit(evt) {
     evt.preventDefault();
     addComment(formData);
-    setFormData(initialData);
+    //setFormData(initialData);
+    evt.target.reset()
   }
 
   return (

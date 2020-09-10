@@ -14,14 +14,17 @@ import { useSelector, shallowEqual } from "react-redux";
  */
 
 function TitleList() {
+  // Store - get all posts
   const posts = useSelector(store => store.posts, shallowEqual);
 
+  // Extract title & description from all posts
   let postsData = [];
   for (let key in posts) {
     const { title, description } = posts[key];
     postsData.push({ id: key, title, description })
   }
 
+  // Make <TitleCards> from data
   const titleCards = postsData.map(post =>
     <TitleCard
       title={post.title}

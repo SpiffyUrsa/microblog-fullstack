@@ -11,6 +11,7 @@ import { addPostsToAPI } from "../actionCreators.js";
 function NewPost() {
   const dispatch = useDispatch();
   
+  /** ????? */
   function handleAddPost(postData) {
     dispatch(addPostsToAPI(postData));
   }

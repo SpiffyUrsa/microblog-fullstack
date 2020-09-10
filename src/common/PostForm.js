@@ -9,27 +9,39 @@ import { Link, useHistory } from "react-router-dom";
  * Props:
  *  handlePost: A function that handles either the adding or editing of a post.
  * 
+ * 
  * App -> Routes -> {NewPost, PostDetails} -> PostForm
  */
-
 function PostForm({ handlePost, post }) {
 
-  let initialData = {
-    title: "",
-    description: "",
-    body: ""
+  //TODO:
+  // Populate form if editting a post
+  const initialData = {
+    title: post ? post.title : '',
+    description: post ? post.description : '',
+    body: post ? post.body : ''
   }
 
-  if (post) {
-    const { title, description, body } = post;
-    initialData = { title, description, body };
-  }
+  // let initialData = {
+  //   title: "",
+  //   description: "",
+  //   body: ""
+  // }
+  // 
+  // // Populate form if editting a post
+  // if (post) {
+  //   const { title, description, body } = post;
+  //   initialData = { title, description, body };
+  // }
 
+  // Setup history
   const history = useHistory();
 
+  // State
   const [formData, setFormData] = useState(initialData);
   const { title, description, body } = formData;
 
+  /** Syncs state & form data */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(formData => ({
@@ -38,6 +50,7 @@ function PostForm({ handlePost, post }) {
     }));
   }
 
+  /** Adds or edits the post */
   function handleSubmit(evt) {
     evt.preventDefault();
     handlePost(formData);

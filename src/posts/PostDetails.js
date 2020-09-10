@@ -17,13 +17,18 @@ import { useSelector, useDispatch, shallowEqual } from "react-redux";
 
 
 function PostDetails() {
-
-  const { id } = useParams();
+  // State
   const [showEdit, setShowEdit] = useState(false);
-  const history = useHistory();
 
+  // Setup: URL parameter, history, dispatch()
+  const { id } = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
+
+  // Store
   const post = useSelector(state => state.posts[id], shallowEqual);
+
+  // Destructure post from store
   const { title, description, body, comments} = post;
   
 
