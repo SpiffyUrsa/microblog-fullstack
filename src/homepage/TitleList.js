@@ -1,17 +1,34 @@
 import React from 'react'
 import TitleCard from './TitleCard'
+import { useSelector, shallowEqual } from "react-redux";
 
-//gets store here
+/** TitleList: Displays cards containing the title and the description 
+ *  of a post.
+ * 
+ *  STORE:
+ *    posts: An object with keys of post ids. Each 
+ *    key has a value of an object containing info on the post. 
+ *    Like {postId: {title:"", description:"", ...}}
+ * 
+ * App -> Homepage -> TitleList -> TitleCard
+ */
 
+function TitleList() {
+  const posts = useSelector(store => store.posts, shallowEqual);
 
-function TitleList({ posts }) {
-  const titleCards = posts.map(post => (
+  let postsData = [];
+  for (let key in posts) {
+    const { title, description } = posts[key];
+    postsData.push({ id: key, title, description })
+  }
+
+  const titleCards = postsData.map(post =>
     <TitleCard
       title={post.title}
       description={post.description}
       id={post.id}
       key={post.id}
-    />)
+    />
   )
 
   return (

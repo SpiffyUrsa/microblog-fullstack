@@ -1,6 +1,11 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
+/** Navbar: Navigation for the app.
+ * 
+ * App -> Navbar
+ */
+
 function Navbar(){
 
   return(

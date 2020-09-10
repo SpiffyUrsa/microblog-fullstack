@@ -4,7 +4,8 @@ App
     - Homepage
       - TitleList
         - TitleCard
-    - PostForm (add)
+    - NewPost
+      - PostForm (add)
 
     - PostDetails
       - PostForm (edit)
@@ -19,7 +20,7 @@ Outline
 
 Redux Store Components
 - dispatch: PostForm (add and edit), 
-- select: StoreList, PostDetails
+- select: TitleList, PostDetails
 
 Store Object Structure
 {

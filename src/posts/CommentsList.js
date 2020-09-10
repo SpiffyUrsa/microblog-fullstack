@@ -1,27 +1,26 @@
 import React from "react";
 import PostComment from "./PostComment"
 import AddCommentForm from "./AddCommentForm";
+import { useDispatch } from "react-redux";
 
-/** Display list of comments and 
+/** CommentsList: Display list of comments and a form to add comments.
+ * 
+ * 
  * 
  */
-function CommentsList() {
+function CommentsList({ comments, id}) {
 
-  const FAKE_POSTS = 
-    {
-      id: 1,
-      title:"Hello",
-      description: "World",
-      body: "yeet",
-      comments: ["wtf", "noob"]
-    }
+  const commentsDisplay = comments.map((comment, idx) => <PostComment text={comment} key={idx} />);
+  const dispatch = useDispatch();
 
-  const comments = FAKE_POSTS.comments.map((comment, idx) => <PostComment text={comment} key={idx} />);
+  function addComment({ comment }) {
+    // USE DISPATCH TO CHANGE COMMENTS IN API AND IN STORE.
+  }
 
   return (
     <div className="CommentsList">
-      {comments}
-      <AddCommentForm />
+      {commentsDisplay}
+      <AddCommentForm addComment={addComment} />
     </div>
   )
 }

@@ -1,8 +1,13 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Homepage from '../homepage/Homepage.js'
-import PostForm from '../common/PostForm.js'
+import NewPost from '../posts/NewPost.js';
 import PostDetails from '../posts/PostDetails.js'
+
+/** Routes: Contains the routes for the app.
+ * 
+ * App -> Routes
+ */
 
 function Routes(){
 
@@ -14,10 +19,10 @@ function Routes(){
         </Route>
 
         <Route exact path="/new">
-          <PostForm />
+          <NewPost />
         </Route>
 
-        <Route exact path="/:postId">
+        <Route exact path="/:id">
           <PostDetails />
         </Route>
 
