@@ -18,53 +18,14 @@ function rootReducer(state = INITIAL_STATE, action) {
   // Modifies store based on given action type
   switch (action.type) {
     case GET_POSTS: {
-      //A
-      const removeArray = action.payload.reduce((acc, curr) => {
-        acc[curr.id] = {
-          title: curr.title,
-          description: curr.description,
-          votes: curr.votes
-        }
-        return acc;
-      }, {})
-
-      
-
-      //B
-      return { ...state, posts: newPosts }
-      /*
-      A) construct correct post structure
-        0. remove array, put into POJO 
-        1. add key (use the id)
-      
-      B) at the end
-        - { ...state, posts: newPosts }
-      */
-      //Goal: a correctly updated state
-
-      /*
-{<- accum
-  "id1": {
-    "id": 1,
-    "title": "First Post",
-    "description": "Best post ever!",
-    "votes": 0
-  },
-  "id2": {
-    "id": 2,
-    "title": "Second Post",
-    "description": "A very good post!",
-    "votes": 0
-  }
-]
-*/
+      return { ...state, posts: action.payload}
     }
     case ADD_POST: {
       const postCopy = { ...state.posts }
       const { title, description, body, comments, id } = action.payload
       postCopy[id] = { title, description, body, comments }
 
-      return { ...state, posts: postCopy }; // saves 10+h potentially; without ...state, this works for you until it doesn't (coded defensively)
+      return { ...state, posts: postCopy };
     }
     case EDIT_POST: {
       const { title, description, body, id } = action.payload //new content

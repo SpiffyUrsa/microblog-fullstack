@@ -50,7 +50,6 @@ Notes for self
 - design consideration: this could be a more useful component if the component can just take a list of posts to display
 - idea of a component's 'real name' based on actual feature vs given name
 - return { ...state, posts: postCopy }; // saves 10+h potentially; without ...state, this works for you until it doesn't (coded defensively)
-
 - library: deepfreeze
 
 // if actionCreators.js gets too big:
