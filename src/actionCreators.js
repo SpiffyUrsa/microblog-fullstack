@@ -1,8 +1,16 @@
 import axios from "axios";
-import { ADD_POST, GET_POSTS, EDIT_POST, DELETE_POST, ADD_COMMENT } from "./actions.js";
+import {
+        ADD_POST,
+        GET_POSTS,
+        EDIT_POST,
+        DELETE_POST,
+        ADD_COMMENT,
+        DELETE_COMMENT
+      } from "./actions.js";
 
 const API_BASE_URL = 'http://localhost:5000/api'
 
+/** Post-related thunks */
 export function getPostsFromAPI() {
   return async function (dispatch) {
     async function _getBody(id) {
@@ -12,10 +20,10 @@ export function getPostsFromAPI() {
 
     // Get all post overviews
     let overviewResp = await axios.get(`${API_BASE_URL}/posts`)
-  
+
     // Get all post details in an *array*
     const postsData = await Promise.all(overviewResp.data.map(overview => _getBody(overview.id)));
-    
+
     // Posts in a POJO
     const posts = postsData.reduce((acc, cur) => {
       acc[cur.id] = cur;
@@ -44,37 +52,51 @@ export function deletePostFromAPI(id) {
 }
 
 export function editPostInAPI(postData, id) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     let resp = await axios.put(`${API_BASE_URL}/posts/${id}`, postData);
     dispatch(editPost(resp.data));
   }
 }
 
+/** Comment-related thunks */
 export function addCommentInAPI(commentData, postId) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     let resp = await axios.post(`${API_BASE_URL}/posts/${postId}/comments`, commentData);
     dispatch(addComment(resp.data, postId));
   }
 }
 
-// Add post action creator
-export function addPost(postData) {
-  return { type: ADD_POST, payload: postData };
+export function deleteCommentInAPI(postId, commentId) {
+  return async function (dispatch) {
+    await axios.delete(`${API_BASE_URL}/posts/${postId}/comments/${commentId}`)
+    dispatch(deleteComment(postId, commentId))
+  }
 }
 
-// Constructs an Action with all posts
+
+
+/** Post-related action creators */
 export function getPosts(postsData) {
   return { type: GET_POSTS, payload: postsData };
 }
 
+export function addPost(postData) {
+  return { type: ADD_POST, payload: postData };
+}
+
 export function deletePost(id) {
-  return { type: DELETE_POST, payload: id};
+  return { type: DELETE_POST, payload: id };
 }
 
 export function editPost(postData) {
-  return { type: EDIT_POST, payload: postData};
+  return { type: EDIT_POST, payload: postData };
 }
 
+/** Comment-related action creators */
 export function addComment(commentData, postId) {
-  return { type: ADD_COMMENT, payload: [commentData, postId]};
+  return { type: ADD_COMMENT, payload: [commentData, postId] };
+}
+
+export function deleteComment(postId, commentId) {
+  return { type: DELETE_COMMENT, payload: { postId, commentId } };
 }

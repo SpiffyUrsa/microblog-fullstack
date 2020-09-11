@@ -1,15 +1,18 @@
-import { ADD_POST, DELETE_POST, EDIT_POST, GET_POSTS, ADD_COMMENT, DELETE_COMMENT } from './actions.js'
-import { getPostsFromAPI } from "./actionCreators";
-// Dummy data
-const INITIAL_STATE =
-{
-  posts: {}  
-}
+import { ADD_POST,
+         DELETE_POST,
+         EDIT_POST,
+         GET_POSTS,
+         ADD_COMMENT,
+         DELETE_COMMENT
+       } from './actions.js'
 
-//Google when have time: redux combineReducer
+const INITIAL_STATE = { posts: {} }
+
+/** Reducer for updating Redux store */
 function rootReducer(state = INITIAL_STATE, action) {
-  // Modifies store based on given action type
   switch (action.type) {
+    
+    /** Post related actions */
     case GET_POSTS: {
       return { ...state, posts: action.payload }
     }
@@ -34,6 +37,8 @@ function rootReducer(state = INITIAL_STATE, action) {
       delete postCopy[id];
       return { ...state, posts: postCopy };
     }
+
+    /** Comment-related actions */
     case ADD_COMMENT: {
       const commentData = action.payload[0];
       const postId = action.payload[1];
@@ -43,9 +48,15 @@ function rootReducer(state = INITIAL_STATE, action) {
 
       return { ...state, posts: newPosts };
     }
-
     case DELETE_COMMENT: {
-      return;
+      const { postId, commentId } = action.payload
+      const copyComments = [...state.posts[postId].comments]
+
+      // Filter out the unwanted comment
+      const filteredComments = copyComments.filter(comment => comment.id !== commentId)
+
+      // Destructure every level then overwriting the key/value pair that leads to the removed comment
+      return { ...state, posts: { ...state.posts, [postId]: { ...state.posts[postId], comments: filteredComments } } }
     }
 
     default:

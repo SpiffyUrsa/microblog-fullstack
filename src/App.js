@@ -15,7 +15,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(function() {
-    console.log("Our effect runs!");
     dispatch(getPostsFromAPI());
   }, [dispatch])
 

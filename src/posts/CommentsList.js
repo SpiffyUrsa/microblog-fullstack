@@ -2,7 +2,7 @@ import React from "react";
 import PostComment from "./PostComment"
 import AddCommentForm from "./AddCommentForm";
 import { useDispatch } from "react-redux";
-import { addCommentInAPI } from "../actionCreators";
+import { addCommentInAPI, deleteCommentInAPI} from "../actionCreators";
 
 /** CommentsList: Display list of comments and a form to add comments.
  * 
@@ -16,11 +16,11 @@ function CommentsList({ comments, postId }) {
   const dispatch = useDispatch();
 
   // Deletes the comment
-  function deleteComment(){
-    //TODO: use dispatch to delete comment in API and store
+  function deleteComment(commentId){
+    dispatch(deleteCommentInAPI(postId, commentId))
   }
 
-  //TODO: USE DISPATCH TO CHANGE COMMENTS IN API AND IN STORE.
+  // Adds a comment
   function addComment(commentData) {
     dispatch(addCommentInAPI(commentData, postId));
   }
@@ -30,7 +30,9 @@ function CommentsList({ comments, postId }) {
   const commentsDisplay = comments.map((comment, idx) => 
     <PostComment 
       deleteComment={deleteComment} 
-      text={comment.text} key={comment.id} 
+      text={comment.text}
+      key={comment.id}
+      commentId={comment.id}
     />);
 
   return (

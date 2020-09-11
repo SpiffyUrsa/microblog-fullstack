@@ -1,6 +1,7 @@
 import React from "react";
 
-
+/** Displays a not found message.
+ */
 function NotFound() {
   return (
     <div className="NotFound">

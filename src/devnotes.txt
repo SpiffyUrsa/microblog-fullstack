@@ -51,6 +51,8 @@ Notes for self
 - idea of a component's 'real name' based on actual feature vs given name
 - return { ...state, posts: postCopy }; // saves 10+h potentially; without ...state, this works for you until it doesn't (coded defensively)
 - library: deepfreeze
+- in an object, the key doesn't need "" to be converted to a string, but watch out when you have a variable named the same thing
+//Google when have time: redux combineReducer
 
 // if actionCreators.js gets too big:
 // actions/
