@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import TitleCard from './TitleCard'
-import { useSelector, shallowEqual } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { getTitlesFromAPI } from "../actionCreators";
+
 
 /** TitleList: Displays cards containing the title and the description 
  *  of a post.
@@ -15,25 +17,27 @@ import { useSelector, shallowEqual } from "react-redux";
 
  // design consideration: this could be a more useful component if the component can just take a list of posts to display
 // component's real name is AllPostTitleList()
-//'where do ersponsibilities lie"
+//'where do responsibilities lie"
 
  function TitleList() {
+  const dispatch = useDispatch();
+  
+  useEffect(function() {
+    dispatch(getTitlesFromAPI());
+  }, [dispatch]);
+  
   // Store - get all posts
-  const posts = useSelector(store => store.posts, shallowEqual);
-
-  // Extract title & description from all posts
-  let postsData = [];
-  for (let key in posts) {
-    const { title, description } = posts[key];
-    postsData.push({ id: key, title, description })
-  }
+  const titles = useSelector(store => store.titles, shallowEqual);
+  
+  if (titles.length === 0) return "Loading...";
 
   // Make <TitleCards> from data
-  const titleCards = postsData.map(post =>
+  const titleCards = titles.map(post =>
     <TitleCard
       title={post.title}
       description={post.description}
       id={post.id}
+      votes={post.votes}
       key={post.id}
     />
   )

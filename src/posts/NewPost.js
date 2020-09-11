@@ -1,7 +1,7 @@
 import React from 'react'
 import PostForm from '../common/PostForm'
 import { useDispatch } from "react-redux";
-import { addPostsToAPI } from "../actionCreators.js";
+import { addPostToAPI } from "../actionCreators.js";
 
 /** NewPost: Displays the form to create a new post.
  * 
@@ -13,7 +13,7 @@ function NewPost() {
 
   /** thunk stuff */
   function handleAddPost(postData) {
-    dispatch(addPostsToAPI(postData));
+    dispatch(addPostToAPI(postData));
   }
 
   return (

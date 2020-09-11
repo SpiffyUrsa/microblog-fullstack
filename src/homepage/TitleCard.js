@@ -7,8 +7,9 @@ import { Link } from 'react-router-dom'
  * App -> Homepage -> TitleList -> TitleCard
  */
 
-function TitleCard({ title, id, description }) {
+function TitleCard({ title, id, description, votes }) {
   return (
+    // TODO: ADD VOTES DISPLAY AND BUTTONS
     <div className="TitleCard">
       <div>
         <Link to={`/${id}`}>{title}</Link>

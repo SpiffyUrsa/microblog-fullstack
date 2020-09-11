@@ -1,12 +1,13 @@
 import axios from "axios";
 import {
-        ADD_POST,
-        GET_POSTS,
-        EDIT_POST,
-        DELETE_POST,
-        ADD_COMMENT,
-        DELETE_COMMENT
-      } from "./actions.js";
+  ADD_POST,
+  GET_TITLES,
+  GET_POST,
+  EDIT_POST,
+  DELETE_POST,
+  ADD_COMMENT,
+  DELETE_COMMENT
+} from "./actions.js";
 
 const API_BASE_URL = 'http://localhost:5000/api'
 
@@ -16,31 +17,21 @@ const API_BASE_URL = 'http://localhost:5000/api'
 */
 
 /** Post-related thunks */
-export function getPostsFromAPI() {
+export function getTitlesFromAPI() {
   return async function (dispatch) {
-    async function _getBody(id) {
-      let resp = await axios.get(`${API_BASE_URL}/posts/${id}`);
-      return resp.data;
-    }
-
-    // Get all post overviews (still need this)
-    let overviewResp = await axios.get(`${API_BASE_URL}/posts`)
-
-    // Get all post details in an *array*
-    const postsData = await Promise.all(overviewResp.data.map(overview => _getBody(overview.id)));
-
-    // Posts in a POJO
-    const posts = postsData.reduce((acc, cur) => {
-      acc[cur.id] = cur;
-      delete acc[cur.id].id;
-      return acc
-    }, {});
-
-    dispatch(getPosts(posts))
+    const resp = await axios.get(`${API_BASE_URL}/posts`);
+    dispatch(getTitles(resp.data))
   }
 }
 
-export function addPostsToAPI(postData) {
+export function getPostFromAPI(id) {
+  return async function (dispatch) {
+    const resp = await axios.get(`${API_BASE_URL}/posts/${id}`);
+    dispatch(getPost(resp.data));
+  }
+}
+
+export function addPostToAPI(postData) {
   return async function (dispatch) {
     let resp = await axios.post(`${API_BASE_URL}/posts`, postData);
     dispatch(addPost(resp.data));
@@ -81,8 +72,12 @@ export function deleteCommentInAPI(postId, commentId) {
 
 
 /** Post-related action creators */
-export function getPosts(postsData) {
-  return { type: GET_POSTS, payload: postsData };
+export function getTitles(postsData) {
+  return { type: GET_TITLES, payload: postsData };
+}
+
+export function getPost(postData) {
+  return { type: GET_POST, payload: postData }
 }
 
 export function addPost(postData) {
@@ -98,8 +93,10 @@ export function editPost(postData) {
 }
 
 /** Comment-related action creators */
+// CR: Use an object for the payload. Easier to figure out by reading the code what the values
+// are. 
 export function addComment(commentData, postId) {
-  return { type: ADD_COMMENT, payload: [commentData, postId] };
+  return { type: ADD_COMMENT, payload: {commentData, postId} };
 }
 
 export function deleteComment(postId, commentId) {

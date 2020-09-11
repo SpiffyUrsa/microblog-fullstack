@@ -1,21 +1,31 @@
-import { ADD_POST,
-         DELETE_POST,
-         EDIT_POST,
-         GET_POSTS,
-         ADD_COMMENT,
-         DELETE_COMMENT
-       } from './actions.js'
+import {
+  ADD_POST,
+  DELETE_POST,
+  EDIT_POST,
+  GET_TITLES,
+  GET_POST,
+  ADD_COMMENT,
+  DELETE_COMMENT
+} from './actions.js'
 
-const INITIAL_STATE = { posts: {} }
+const INITIAL_STATE = { posts: {}, titles: [] }
 
 //TODO: start refactor for Store here
 /** Reducer for updating Redux store */
 function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    
+
     /** Post related actions */
-    case GET_POSTS: {
-      return { ...state, posts: action.payload }
+    case GET_TITLES: {
+      return { ...state, titles: action.payload }
+    }
+    case GET_POST: {
+      const postCopy = { ...state.posts };
+      const { title, description, body, id, votes, comments } = action.payload;
+      postCopy[id] = { title, description, body, votes, comments };
+
+      return { ...state, posts: postCopy }
+
     }
     case ADD_POST: {
       const postCopy = { ...state.posts }
@@ -41,8 +51,7 @@ function rootReducer(state = INITIAL_STATE, action) {
 
     /** Comment-related actions */
     case ADD_COMMENT: {
-      const commentData = action.payload[0];
-      const postId = action.payload[1];
+      const { commentData, postId } = action.payload;
       const copyPost = { ...state.posts[postId] };
       const updatedPost = { ...copyPost, comments: [...copyPost.comments, commentData] };
       const newPosts = { ...state.posts, [postId]: updatedPost };

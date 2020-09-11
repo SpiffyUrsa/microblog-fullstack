@@ -1,22 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import Navbar from './nav-router/Navbar'
 import Routes from './nav-router/Routes'
 import { BrowserRouter } from 'react-router-dom'
-import { useDispatch } from "react-redux";
-import { getPostsFromAPI } from "./actionCreators";
 
 
 /** App
  * App -> Navbar -> Router (-> PostForm, PostDetails, Homepage (->TitleList (->TitleCard))
  */
 function App() {
-
-  const dispatch = useDispatch();
-
-  useEffect(function() {
-    dispatch(getPostsFromAPI());
-  }, [dispatch])
 
   return (
     <div className="App">

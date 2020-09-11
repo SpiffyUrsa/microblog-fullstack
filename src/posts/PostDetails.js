@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PostForm from "../common/PostForm";
 import { useHistory, useParams } from "react-router-dom"
 import CommentsList from "./CommentsList";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { deletePostFromAPI, editPostInAPI } from "../actionCreators";
+import { deletePostFromAPI, editPostInAPI, getPostFromAPI } from "../actionCreators";
 import { Redirect } from "react-router-dom";
 
 
@@ -27,6 +27,10 @@ function PostDetails() {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
+
+  useEffect(function() {
+    dispatch(getPostFromAPI(id));
+  }, [dispatch, id])
 
   // Store
   const posts = useSelector(state => state.posts, shallowEqual);
