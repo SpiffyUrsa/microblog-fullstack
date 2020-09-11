@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import { votePostInAPI, getPostFromAPI } from '../actionCreators'
 
 /** TitleCard: Displays the title and description of a post along with a link
@@ -11,10 +11,14 @@ import { votePostInAPI, getPostFromAPI } from '../actionCreators'
 
 function TitleCard({ title, id, description, votes }) {
 
-  const dispatch = useDispatch()
+  // Find the index of the title using the id.
+  
+  const dispatch = useDispatch();
+  // get the specific title from store
+  // use the votes key in that title.
+
 
   function handleVote(direction) {
-    dispatch(getPostFromAPI(id)) //TODO: change design
     dispatch(votePostInAPI(id, direction))
   }
 

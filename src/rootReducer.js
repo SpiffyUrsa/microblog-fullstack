@@ -17,9 +17,18 @@ function rootReducer(state = INITIAL_STATE, action) {
 
     /** Post related actions */
     case VOTE_POST: {
-      const { postId, votes } = action.payload
-      const updatedPosts = { ...state.posts, [postId]: { ...state.posts[postId], votes } }
-      return { ...state, posts: updatedPosts }
+      const { postId, votes } = action.payload;
+      const copyTitles = [...state.titles];
+
+      const titleIdx = copyTitles.findIndex(title => title[postId]);
+      let targetTitle = copyTitles[titleIdx];
+      copyTitles[titleIdx] = {...targetTitle, votes};
+
+      return {...state, titles: copyTitles};
+
+
+      // const updatedPosts = { ...state.posts, [postId]: { ...state.posts[postId], votes } }
+      // return { ...state, posts: updatedPosts }
     }
     case GET_TITLES: {
       return { ...state, titles: action.payload }
