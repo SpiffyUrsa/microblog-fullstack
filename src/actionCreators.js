@@ -1,22 +1,24 @@
 import axios from "axios";
 import {
-  ADD_POST,
   GET_TITLES,
+  VOTE_POST,
   GET_POST,
   EDIT_POST,
+  ADD_POST,
   DELETE_POST,
   ADD_COMMENT,
   DELETE_COMMENT
 } from "./actions.js";
 
 const API_BASE_URL = 'http://localhost:5000/api'
-
-/*TODO:
-- Create an action creator that just gets titles/whatever else we need.
-- Second action creator just gets a single post's complete details (given its ID).
-*/
-
 /** Post-related thunks */
+export function votePostInAPI(postId, voteDirection) {
+  return async function (dispatch) {
+    const resp = await axios.post(`${API_BASE_URL}/posts/${postId}/vote/${voteDirection}`)
+    dispatch(votePost(postId, resp.data))
+  }
+}
+
 export function getTitlesFromAPI() {
   return async function (dispatch) {
     const resp = await axios.get(`${API_BASE_URL}/posts`);
@@ -91,6 +93,12 @@ export function deletePost(id) {
 export function editPost(postData) {
   return { type: EDIT_POST, payload: postData };
 }
+
+export function votePost(postId, voteData){
+  return { type: VOTE_POST, payload: { postId, votes: voteData.votes } }
+}
+
+
 
 /** Comment-related action creators */
 // CR: Use an object for the payload. Easier to figure out by reading the code what the values

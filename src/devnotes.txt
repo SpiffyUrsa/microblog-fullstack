@@ -52,7 +52,12 @@ Notes for self
 - return { ...state, posts: postCopy }; // saves 10+h potentially; without ...state, this works for you until it doesn't (coded defensively)
 - library: deepfreeze
 - in an object, the key doesn't need "" to be converted to a string, but watch out when you have a variable named the same thing
-//Google when have time: redux combineReducer
+- Google when have time: redux combineReducer
+- ?.
+  - post?.title || ''
+  - think of ?. as a safe property check;
+  - read as: safely check for title and use that, otherwise empty string
+  - blogs?.post?.comments?.first (really shines when chained)
 
 // if actionCreators.js gets too big:
 // actions/
@@ -62,4 +67,5 @@ Notes for self
 
 Code Review Q's
 1. where should actions.js live, other redux stuff too?
+
 

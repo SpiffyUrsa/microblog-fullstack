@@ -5,17 +5,22 @@ import {
   GET_TITLES,
   GET_POST,
   ADD_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  VOTE_POST
 } from './actions.js'
 
 const INITIAL_STATE = { posts: {}, titles: [] }
 
-//TODO: start refactor for Store here
 /** Reducer for updating Redux store */
 function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
 
     /** Post related actions */
+    case VOTE_POST: {
+      const { postId, votes } = action.payload
+      const updatedPosts = { ...state.posts, [postId]: { ...state.posts[postId], votes } }
+      return { ...state, posts: updatedPosts }
+    }
     case GET_TITLES: {
       return { ...state, titles: action.payload }
     }

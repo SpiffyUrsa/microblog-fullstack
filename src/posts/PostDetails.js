@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import PostForm from "../common/PostForm";
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory, useParams, Redirect } from "react-router-dom"
 import CommentsList from "./CommentsList";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { deletePostFromAPI, editPostInAPI, getPostFromAPI } from "../actionCreators";
-import { Redirect } from "react-router-dom";
 
 
 /** PostDetails: Displays a blog post.
