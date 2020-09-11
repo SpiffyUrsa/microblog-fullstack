@@ -44,7 +44,8 @@ export function deletePostFromAPI(id) {
   return async function (dispatch) {
     let resp = await axios.delete(`${API_BASE_URL}/posts/${id}`);
 
-    // TODO: Add a try catch here instead of checking this manually.
+    // TODO: Add a try catch here instead of checking this manually. If the server doesn't return anything in the 200 range 
+    // it is an error. Deal with it.
     if (resp.data.message === "deleted") dispatch(deletePost(id));
   }
 }
@@ -94,7 +95,7 @@ export function editPost(postData) {
   return { type: EDIT_POST, payload: postData };
 }
 
-export function votePost(postId, voteData){
+export function votePost(postId, voteData) {
   return { type: VOTE_POST, payload: { postId, votes: voteData.votes } }
 }
 

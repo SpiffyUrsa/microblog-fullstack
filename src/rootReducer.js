@@ -9,6 +9,9 @@ import {
   VOTE_POST
 } from './actions.js'
 
+// CR: Make a comment that shows what our state should look like.
+
+
 const INITIAL_STATE = { posts: {}, titles: [] }
 
 /** Reducer for updating Redux store */
@@ -20,15 +23,15 @@ function rootReducer(state = INITIAL_STATE, action) {
       const { postId, votes } = action.payload;
       const copyTitles = [...state.titles];
 
-      const titleIdx = copyTitles.findIndex(title => title[postId]);
+      const titleIdx = copyTitles.findIndex(title => title.id === postId);
       let targetTitle = copyTitles[titleIdx];
-      copyTitles[titleIdx] = {...targetTitle, votes};
+      copyTitles[titleIdx] = { ...targetTitle, votes };
 
-      return {...state, titles: copyTitles};
-
-
-      // const updatedPosts = { ...state.posts, [postId]: { ...state.posts[postId], votes } }
-      // return { ...state, posts: updatedPosts }
+      if (state.posts[postId]) {
+        const updatedPosts = { ...state.posts, [postId]: { ...state.posts[postId], votes } };
+        return { ...state, posts: updatedPosts, titles: copyTitles };
+      }
+      return { ...state, titles: copyTitles };
     }
     case GET_TITLES: {
       return { ...state, titles: action.payload }
@@ -42,12 +45,13 @@ function rootReducer(state = INITIAL_STATE, action) {
 
     }
     case ADD_POST: {
-      const postCopy = { ...state.posts }
+      const postsCopy = { ...state.posts }
       const { title, description, body, id, votes } = action.payload
-      postCopy[id] = { title, description, body, votes, comments: [] }
+      postsCopy[id] = { title, description, body, votes, comments: [] }
 
-      return { ...state, posts: postCopy };
+      return { ...state, posts: postsCopy };
     }
+    // CR: copyPost is excess. We can streamline this more.
     case EDIT_POST: {
       const { title, description, body, id, votes } = action.payload //new content
       const copyPost = { ...state.posts[id] } //got the exact post, then spread it to shallow copy
@@ -79,7 +83,7 @@ function rootReducer(state = INITIAL_STATE, action) {
       // Filter out the unwanted comment
       const filteredComments = copyComments.filter(comment => comment.id !== commentId)
 
-      // Destructure every level then overwriting the key/value pair that leads to the removed comment
+      // De-structure every level then overwriting the key/value pair that leads to the removed comment
       return { ...state, posts: { ...state.posts, [postId]: { ...state.posts[postId], comments: filteredComments } } }
     }
 

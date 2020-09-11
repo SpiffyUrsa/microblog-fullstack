@@ -14,8 +14,6 @@ import { Link, useHistory } from "react-router-dom";
  */
 function PostForm({ handlePost, post }) {
 
-  //TODO:
-  // Populate form if editting a post
   const initialData = {
     title: post?.title || '',
     description: post?.description || '',

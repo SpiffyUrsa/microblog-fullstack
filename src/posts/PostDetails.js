@@ -3,8 +3,8 @@ import PostForm from "../common/PostForm";
 import { useHistory, useParams, Redirect } from "react-router-dom"
 import CommentsList from "./CommentsList";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { deletePostFromAPI, editPostInAPI, getPostFromAPI } from "../actionCreators";
-
+import { deletePostFromAPI, editPostInAPI, getPostFromAPI, votePostInAPI } from "../actionCreators";
+import PostVotes from "../common/PostVotes";
 
 /** PostDetails: Displays a blog post.
  * 
@@ -34,13 +34,13 @@ function PostDetails() {
   // Store
   const posts = useSelector(state => state.posts, shallowEqual);
   
-  if (Object.values(posts).length === 0) return "Loading...";
+  if (Object.values(posts).length === 0) return "Loading..."; // WHY JAVASCRIPT?!??
   if (posts[id] === undefined) {
     return <Redirect to="/notfound" />;
   }
 
   // Destructure post from store
-  const { title, description, body, comments } = posts[id];
+  const { title, description, body, comments, votes } = posts[id];
 
   // Shows the edit post form
   function handleEdit(evt) {
@@ -66,6 +66,7 @@ function PostDetails() {
       <h2>{title}</h2>
       <h4><em>{description}</em></h4>
       <p>{body}</p>
+      <PostVotes postId={id} votes={votes} />
       <button onClick={handleEdit}>Edit</button>
       <button onClick={handleDelete}>Delete</button>
       <hr />

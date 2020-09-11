@@ -22,6 +22,8 @@ import { getTitlesFromAPI } from "../actionCreators";
  function TitleList() {
   const dispatch = useDispatch();
   
+  // CR: Better to give anon functions a name for specificity. Better than writing a comment to
+  // explain usage. 
   useEffect(function() {
     dispatch(getTitlesFromAPI());
   }, [dispatch]);
