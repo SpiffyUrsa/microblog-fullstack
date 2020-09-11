@@ -8,6 +8,7 @@ import { ADD_POST,
 
 const INITIAL_STATE = { posts: {} }
 
+//TODO: start refactor for Store here
 /** Reducer for updating Redux store */
 function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {

@@ -10,6 +10,11 @@ import {
 
 const API_BASE_URL = 'http://localhost:5000/api'
 
+/*TODO:
+- Create an action creator that just gets titles/whatever else we need.
+- Second action creator just gets a single post's complete details (given its ID).
+*/
+
 /** Post-related thunks */
 export function getPostsFromAPI() {
   return async function (dispatch) {
@@ -18,7 +23,7 @@ export function getPostsFromAPI() {
       return resp.data;
     }
 
-    // Get all post overviews
+    // Get all post overviews (still need this)
     let overviewResp = await axios.get(`${API_BASE_URL}/posts`)
 
     // Get all post details in an *array*
