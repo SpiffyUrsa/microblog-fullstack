@@ -12,7 +12,7 @@ function TitleList() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(function() {
+  useEffect(function () {
     async function fetchTitle() {
       await dispatch(fetchTitlesFromAPI());
       setIsLoading(false);
@@ -51,9 +51,9 @@ function TitleList() {
             <div className="card-footer">
               <small>{title.votes} votes</small>
               <i className="fas fa-thumbs-up text-success ml-2"
-                  onClick={evt => vote("up", title.id)} />
+                onClick={evt => vote("up", title.id)} />
               <i className="fas fa-thumbs-down text-danger ml-2"
-                  onClick={evt => vote("down", title.id)} />
+                onClick={evt => vote("down", title.id)} />
             </div>
           </div>
         </div>
