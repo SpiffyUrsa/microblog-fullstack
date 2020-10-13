@@ -7,7 +7,7 @@ import Comment from "./Comment"
  *
  */
 
-function CommentList({comments = [], deleteComment}) {
+function CommentList({ comments = [], deleteComment }) {
   return (
     comments.map(c => (
       <Comment

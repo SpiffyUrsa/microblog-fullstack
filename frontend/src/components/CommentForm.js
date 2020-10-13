@@ -6,7 +6,7 @@ import React, { useState } from 'react';
  *
  */
 
-function CommentForm({submitCommentForm}) {
+function CommentForm({ submitCommentForm }) {
   const [text, setText] = useState();
 
   function handleSubmit(evt) {
@@ -23,13 +23,13 @@ function CommentForm({submitCommentForm}) {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-        <input onChange={handleChange}
-                id="commentform-text"
-                name="text"
-                size="50"
-                placeholder="New Comment"
-                className="form-control"
-                value={text} />
+          <input onChange={handleChange}
+            id="commentform-text"
+            name="text"
+            size="50"
+            placeholder="New Comment"
+            className="form-control"
+            value={text} />
         </div>
         <button className="btn btn-primary">Add</button>
 
