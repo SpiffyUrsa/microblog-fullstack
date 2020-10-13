@@ -7,7 +7,7 @@ import React from 'react';
  *
  */
 
-function Comment({deleteComment, text, id}) {
+function Comment({ deleteComment, text, id }) {
 
   function handleDelete(evt) {
     deleteComment(id);
