@@ -103,14 +103,14 @@ function Post(props) {
       {isEditing
         ? <PostForm post={post} save={edit} cancel={toggleEdit} />
         : <PostDisplay post={post}
-                        toggleEdit={toggleEdit}
-                        deletePost={deletePost}
-                        doVote={vote} />}
+          toggleEdit={toggleEdit}
+          deletePost={deletePost}
+          doVote={vote} />}
 
       <section className="Post-comments mb-4">
         <h4>Comments</h4>
         <CommentList comments={post.comments}
-                      deleteComment={deleteComment} />
+          deleteComment={deleteComment} />
         <CommentForm submitCommentForm={addComment} />
       </section>
 
