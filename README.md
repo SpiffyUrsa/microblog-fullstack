@@ -2,7 +2,7 @@
 
 ## Description
 
-Microblog is a full stack app where users can create/edit/delete posts, create/delete comments on those posts, and vote up/down on the posts as well. It uses React, Redux, and Redux-Thunk on the frontend, and Node/Express and PostgreSQL on the backend.
+Microblog is a full stack app where users can create/edit/delete posts, create/delete comments on those posts, and upvote or downvote the posts as well. It uses React, Redux, and Redux-Thunk on the frontend, and Node/Express and PostgreSQL on the backend.
 
 ## To run this repo locally:
 
@@ -15,7 +15,7 @@ Microblog is a full stack app where users can create/edit/delete posts, create/d
 
 #### Backend
 1. `cd backend`
-2. `psql < data.sql` (creates microblog db and seeds a little data)
+2. `psql < data.sql` (creates microblog db and seeds initial data)
 3. `npm install`
 4. `npm start` or `nodemon`
 
@@ -32,7 +32,7 @@ Microblog is a full stack app where users can create/edit/delete posts, create/d
 
 ### Frontend
 
-1. React - FE JS Framework
+1. React - Frontend JS Framework
 2. React-Router - Library to create single page app
 3. React-Redux - State management library
 4. Redux-Thunk - Redux middleware to allow async action creators
@@ -40,5 +40,5 @@ Microblog is a full stack app where users can create/edit/delete posts, create/d
 6. React-Flip-Toolkit - Animation library for reordering list components
 7. axios - http client
 
-Note: This was a pair project at Rithm. The backend and frontend were separate projects. The frontend was entirely built by my programming partner and I. The backend is optimized code kindly provided by Rithm staff.
+Note: This was a pair project at Rithm. The backend and frontend were separate projects. The frontend was entirely built by my programming partner and I. The backend consists of optimized code that was graciously provided by Rithm staff.
 
