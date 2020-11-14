@@ -40,5 +40,5 @@ Microblog is a full stack app where users can create/edit/delete posts, create/d
 6. React-Flip-Toolkit - Animation library for reordering list components
 7. axios - http client
 
-Note: This was a pair project at Rithm. The backend and frontend were separate projects. The frontend was entirely built by my programming partner and I. The backend consists of optimized code that was graciously provided by Rithm staff.
+Note: This was a pair project at Rithm. The backend and frontend were separate projects. The frontend was entirely built by my programming partner and I. The backend consists of code that was graciously provided by Rithm staff.
 
